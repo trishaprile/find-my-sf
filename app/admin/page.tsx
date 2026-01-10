@@ -295,12 +295,13 @@ export default function AdminPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>Event Manager</h1>
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
+        <div className={styles.headerButtons}>
           <button
-            onClick={handleLogout}
-            className={styles.logoutButton}
+            onClick={openAddModal}
+            className={styles.addButton}
           >
-            Logout
+            <Plus size={20} />
+            Add Event
           </button>
           <button
             onClick={cleanupPastEvents}
@@ -311,11 +312,10 @@ export default function AdminPage() {
             Clean Up Past Events
           </button>
           <button
-            onClick={openAddModal}
-            className={styles.addButton}
+            onClick={handleLogout}
+            className={styles.logoutButton}
           >
-            <Plus size={20} />
-            Add Event
+            Logout
           </button>
         </div>
       </div>
@@ -358,21 +358,19 @@ export default function AdminPage() {
             </div>
             <div className={styles.formGroup}>
               <label>Time *</label>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div className={styles.timeInputGroup}>
                 <input
                   type="text"
                   value={timeValue}
                   onChange={(e) => setTimeValue(e.target.value)}
                   placeholder="7:00"
-                  className={styles.input}
-                  style={{ flex: 1 }}
+                  className={`${styles.input} ${styles.timeInput}`}
                   required
                 />
                 <select
                   value={timePeriod}
                   onChange={(e) => setTimePeriod(e.target.value)}
-                  className={styles.input}
-                  style={{ width: '70px' }}
+                  className={`${styles.input} ${styles.timePeriodSelect}`}
                 >
                   <option value="AM">AM</option>
                   <option value="PM">PM</option>
@@ -381,7 +379,7 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className={styles.formRow} style={{ gridTemplateColumns: '3fr 1fr' }}>
+          <div className={`${styles.formRow} ${styles.locationPriceRow}`}>
               <div className={styles.formGroup}>
                 <label>Location *</label>
                 <input
@@ -448,9 +446,7 @@ export default function AdminPage() {
 
       {loading && <p className={styles.loadingState}>Loading events...</p>}
 
-      <div className={styles.eventsList}>
-        <h2>All Events ({events.length})</h2>
-
+      <div className={styles.eventsGrid}>
         {events.length === 0 && !loading && (
           <p className={styles.emptyState}>
             No events yet. Add your first event using the button above!
@@ -460,7 +456,6 @@ export default function AdminPage() {
         {events.map((event) => (
           <div key={event.id} className={styles.eventCard}>
             <div className={styles.eventInfo}>
-              <h3>{event.title}</h3>
               {event.link && (
                 <a
                   href={event.link}
@@ -468,7 +463,7 @@ export default function AdminPage() {
                   rel="noopener noreferrer"
                   className={styles.eventLink}
                 >
-                  {event.link}
+                  <h3>{event.title}</h3>
                 </a>
               )}
               <div className={styles.eventMeta}>
@@ -481,27 +476,29 @@ export default function AdminPage() {
                 <span>{event.location}</span>
                 <span>{formatPriceDisplay(event.price)}</span>
               </div>
-              <div className={styles.eventTags}>
-                {event.tags.map(tag => (
-                  <span key={tag} className={styles.eventTag}>{tag}</span>
-                ))}
+              <div className={styles.eventFooter}>
+                <div className={styles.eventTags}>
+                  {event.tags.map(tag => (
+                    <span key={tag} className={styles.eventTag}>{tag}</span>
+                  ))}
+                </div>
+                <div className={styles.eventActions}>
+                  <button
+                    onClick={() => startEdit(event)}
+                    className={styles.editButton}
+                    title="Edit event"
+                  >
+                    <Pencil size={18} />
+                  </button>
+                  <button
+                    onClick={() => deleteEvent(event.id)}
+                    className={styles.deleteButton}
+                    title="Delete event"
+                  >
+                    <Trash2 size={18} />
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className={styles.eventActions}>
-              <button
-                onClick={() => startEdit(event)}
-                className={styles.editButton}
-                title="Edit event"
-              >
-                <Pencil size={18} />
-              </button>
-              <button
-                onClick={() => deleteEvent(event.id)}
-                className={styles.deleteButton}
-                title="Delete event"
-              >
-                <Trash2 size={18} />
-              </button>
             </div>
           </div>
         ))}

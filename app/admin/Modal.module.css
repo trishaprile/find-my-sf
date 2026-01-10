@@ -66,20 +66,45 @@
 }
 
 @media (max-width: 768px) {
+  .modalBackdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
   .modalContent {
     padding: 1.5rem;
-    width: 95%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: 16px 16px 0 0;
+    animation: slideUpMobile 0.3s ease-out;
   }
 
   .modalContent h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 1rem;
+    padding-right: 2rem;
   }
 
   .closeButton {
     top: 1rem;
     right: 1rem;
-    padding: 0.3rem;
+    padding: 0.4rem;
   }
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 1.25rem;
+  }
+
+  .modalContent h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@keyframes slideUpMobile {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
