@@ -11,7 +11,7 @@ A Next.js application built with TypeScript for discovering events in San Franci
 - Category filtering (Market, Workshop, Arts & Crafts, Outdoor, Social, Music, Tech, Exhibit, Hobby)
 - Admin panel for managing events
 - Responsive design for mobile and desktop
-- Custom favicon illustrated by [Chris Chrung](https://chrischung.net/about)
+- Custom favicon illustrated by [Chris Chung](https://chrischung.net/about)
 
 ## 🛠️ Tech Stack
 
