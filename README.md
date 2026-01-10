@@ -1,8 +1,8 @@
-# find my sf
+# 🌁 find my sf 
 
 A Next.js application built with TypeScript for discovering events in San Francisco.
 
-## Features
+## ✨ Features
 
 - Event discovery and browsing
 - Category filtering (Market, Workshop, Arts & Crafts, Outdoor, Social, Music, Tech, Exhibit, Hobby)
@@ -10,7 +10,7 @@ A Next.js application built with TypeScript for discovering events in San Franci
 - Automatic removal of past events
 - Responsive design for mobile and desktop
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - Next.js 14
 - TypeScript
@@ -19,7 +19,7 @@ A Next.js application built with TypeScript for discovering events in San Franci
 - Gaegu & DynaPuff fonts
 - Lucide React icons
 
-## Getting Started
+## 💻 Getting Started
 
 First, install the dependencies:
 
@@ -47,7 +47,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Admin Panel
+## 🗃️ Admin Panel
 
 The admin panel is password protected. Access it at [http://localhost:3000/admin](http://localhost:3000/admin) using the password set in your `.env.local` file.
 
