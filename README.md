@@ -2,12 +2,14 @@
 
 A Next.js application built with TypeScript for discovering events in San Francisco.
 
+<img width="1504" height="754" alt="find my sf" src="https://github.com/user-attachments/assets/2e40ec30-1790-420e-9261-c6f7266b7a8c" />
+
+
 ## ✨ Features
 
 - Event discovery and browsing
 - Category filtering (Market, Workshop, Arts & Crafts, Outdoor, Social, Music, Tech, Exhibit, Hobby)
 - Admin panel for managing events
-- Automatic removal of past events
 - Responsive design for mobile and desktop
 
 ## 🛠️ Tech Stack
@@ -19,7 +21,7 @@ A Next.js application built with TypeScript for discovering events in San Franci
 - Gaegu & DynaPuff fonts
 - Lucide React icons
 
-## 💻 Getting Started
+## ⌨️ Getting Started
 
 First, install the dependencies:
 
@@ -62,7 +64,7 @@ Features:
 
 Events are stored in `.data/events.json` and persist across restarts. Past events are automatically hidden from the main page but remain visible in the admin panel until manually cleaned up.
 
-## Build for Production
+## 💻 Build for Production
 
 ```bash
 npm run build
