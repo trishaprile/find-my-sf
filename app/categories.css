@@ -1,0 +1,85 @@
+/* Category color definitions as CSS custom properties */
+:root {
+  --category-market-color: #DC2626;
+  --category-market-bg: #FFE2E2;
+  
+  --category-workshop-color: #EA580C;
+  --category-workshop-bg: #FFE1CD;
+  
+  --category-arts-crafts-color: #CA8A04;
+  --category-arts-crafts-bg: #FFF4D1;
+  
+  --category-outdoor-color: #65A30D;
+  --category-outdoor-bg: #EFFFD8;
+  
+  --category-music-color: #2563EB;
+  --category-music-bg: #E3ECFF;
+  
+  --category-tech-color: #9333EA;
+  --category-tech-bg: #F6ECFF;
+  
+  --category-exhibit-color: #C026D3;
+  --category-exhibit-bg: #FDEDFF;
+  
+  --category-social-color: #0D9488;
+  --category-social-bg: #E6FFFD;
+  
+  --category-hobby-color: #DB2777;
+  --category-hobby-bg: #FFE5F1;
+}
+
+/* Category-specific styles using data attributes */
+[data-category="MARKET"] {
+  color: var(--category-market-color);
+  background-color: var(--category-market-bg);
+  border-color: var(--category-market-color);
+}
+
+[data-category="WORKSHOP"] {
+  color: var(--category-workshop-color);
+  background-color: var(--category-workshop-bg);
+  border-color: var(--category-workshop-color);
+}
+
+[data-category="ARTS & CRAFTS"] {
+  color: var(--category-arts-crafts-color);
+  background-color: var(--category-arts-crafts-bg);
+  border-color: var(--category-arts-crafts-color);
+}
+
+[data-category="OUTDOOR"] {
+  color: var(--category-outdoor-color);
+  background-color: var(--category-outdoor-bg);
+  border-color: var(--category-outdoor-color);
+}
+
+[data-category="MUSIC"] {
+  color: var(--category-music-color);
+  background-color: var(--category-music-bg);
+  border-color: var(--category-music-color);
+}
+
+[data-category="TECH"] {
+  color: var(--category-tech-color);
+  background-color: var(--category-tech-bg);
+  border-color: var(--category-tech-color);
+}
+
+[data-category="EXHIBIT"] {
+  color: var(--category-exhibit-color);
+  background-color: var(--category-exhibit-bg);
+  border-color: var(--category-exhibit-color);
+}
+
+[data-category="SOCIAL"] {
+  color: var(--category-social-color);
+  background-color: var(--category-social-bg);
+  border-color: var(--category-social-color);
+}
+
+[data-category="HOBBY"] {
+  color: var(--category-hobby-color);
+  background-color: var(--category-hobby-bg);
+  border-color: var(--category-hobby-color);
+}
+

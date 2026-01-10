@@ -1,0 +1,419 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem;
+  font-family: var(--font-gaegu);
+  background-color: #FFFBF6;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 26px;
+  margin: 0;
+  color: #2c2c2c;
+  font-weight: 700;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #2c2c2c;
+  color: white;
+  border: 1px solid #2c2c2c;
+  border-radius: 10px;
+  font-family: var(--font-gaegu);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.addButton:hover {
+  background: #4a4a4a;
+}
+
+.logoutButton {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #2c2c2c;
+  border: 1px solid #2c2c2c;
+  border-radius: 10px;
+  font-family: var(--font-gaegu);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.logoutButton:hover {
+  background: #2c2c2c;
+  color: white;
+}
+
+.cleanupButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #dc2626;
+  border: 1px solid #dc2626;
+  border-radius: 10px;
+  font-family: var(--font-gaegu);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.cleanupButton:hover:not(:disabled) {
+  background: #dc2626;
+  color: white;
+}
+
+.cleanupButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.formGroup label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-family: var(--font-gaegu);
+  font-size: 0.95rem;
+  color: #2c2c2c;
+  background-color: #fdfdfd;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.categoryCheckboxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #fdfdfd;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.checkboxLabel:hover {
+  background: #f3f4f6;
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.saveButton {
+  padding: 0.75rem 1.5rem;
+  background: #2c2c2c;
+  color: white;
+  border: 1px solid #2c2c2c;
+  border-radius: 10px;
+  font-family: var(--font-gaegu);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.saveButton:hover {
+  background: #4a4a4a;
+}
+
+.saveButton:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  border-color: #ccc;
+  transform: none;
+}
+
+.cancelButton {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-family: var(--font-gaegu);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.cancelButton:hover {
+  background: #f3f4f6;
+}
+
+.eventsList {
+  margin-top: 2rem;
+}
+
+.eventsList h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #2c2c2c;
+  font-weight: 700;
+}
+
+.emptyState {
+  text-align: center;
+  color: #6b7280;
+  padding: 3rem;
+  font-size: 1.1rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.loadingState {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+
+.eventCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: white;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.eventInfo {
+  flex-grow: 1;
+}
+
+.eventInfo h3 {
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+  color: #2c2c2c;
+  font-weight: 600;
+}
+
+.eventLink {
+  color: #2563EB;
+  font-size: 0.85rem;
+  text-decoration: none;
+  word-break: break-all;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.eventLink:hover {
+  text-decoration: underline;
+}
+
+.eventMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 0.75rem;
+}
+
+.eventTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.eventTag {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #4b5563;
+  background-color: #f3f4f6;
+}
+
+.eventActions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.editButton,
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: transparent;
+}
+
+.editButton {
+  border: 1px solid black;
+  color: black;
+}
+
+.editButton:hover {
+  background: black;
+  color: white;
+}
+
+.deleteButton {
+  border: 1px solid #dc2626;
+  color: #dc2626;
+}
+
+.deleteButton:hover {
+  background: #dc2626;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .form {
+    padding: 1.5rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .categoryCheckboxes {
+    grid-template-columns: 1fr;
+  }
+
+  .eventCard {
+    flex-direction: column;
+  }
+
+  .eventActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* Login styles */
+.loginContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFBF6;
+  font-family: var(--font-gaegu);
+}
+
+.loginBox {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  border: 1px solid #2c2c2c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+}
+
+.loginTitle {
+  font-size: 28px;
+  margin: 0 0 2rem 0;
+  color: #2c2c2c;
+  font-weight: 700;
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 0.75rem;
+  background: #2c2c2c;
+  color: white;
+  border: 1px solid #2c2c2c;
+  border-radius: 10px;
+  font-family: var(--font-gaegu);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.loginButton:hover {
+  background: #4a4a4a;
+}
+
+.errorMessage {
+  color: #dc2626;
+  font-size: 0.95rem;
+  margin: -0.5rem 0 0 0;
+  text-align: center;
+}
+
