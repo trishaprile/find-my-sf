@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { loadEvents, saveEvents } from '@/lib/storage'
+import { loadEvents, saveEvents } from '@/lib/kv-storage'
 import { Event } from '@/types/event'
 
 // GET all events
@@ -102,7 +102,7 @@ export async function DELETE(request: Request) {
       )
     }
 
-    const events = loadEvents()
+    const events = await loadEvents()
     const filteredEvents = events.filter(e => e.id !== id)
     
     if (events.length === filteredEvents.length) {
@@ -112,7 +112,7 @@ export async function DELETE(request: Request) {
       )
     }
 
-    saveEvents(filteredEvents)
+    await saveEvents(filteredEvents)
     
     return NextResponse.json({ success: true })
   } catch (error) {
