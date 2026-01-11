@@ -35,6 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# data storage (allow events.json to be committed)
+# data storage
 .data/
-!.data/events.json
