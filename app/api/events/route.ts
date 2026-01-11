@@ -5,7 +5,7 @@ import { Event } from '@/types/event'
 // GET all events
 export async function GET() {
   try {
-    const events = loadEvents()
+    const events = await loadEvents()
     return NextResponse.json({ events })
   } catch (error) {
     console.error('Failed to fetch events:', error)
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       )
     }
 
-    const events = loadEvents()
+    const events = await loadEvents()
     const newEvent: Event = {
       id: `event-${Date.now()}`,
       day: body.day || '',
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     }
     
     events.push(newEvent)
-    saveEvents(events)
+    await saveEvents(events)
     
     return NextResponse.json({ event: newEvent }, { status: 201 })
   } catch (error) {
@@ -66,7 +66,7 @@ export async function PUT(request: Request) {
       )
     }
 
-    const events = loadEvents()
+    const events = await loadEvents()
     const index = events.findIndex(e => e.id === body.id)
     
     if (index === -1) {
@@ -77,7 +77,7 @@ export async function PUT(request: Request) {
     }
 
     events[index] = body
-    saveEvents(events)
+    await saveEvents(events)
     
     return NextResponse.json({ event: body })
   } catch (error) {
