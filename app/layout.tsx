@@ -18,16 +18,18 @@ const gaegu = Gaegu({
 export const metadata: Metadata = {
   title: 'find my sf',
   description: 'Discover events happening in San Francisco!',
+  metadataBase: new URL('https://find-my-sf.vercel.app'),
   openGraph: {
     title: 'find my sf',
     description: 'Discover events happening in San Francisco!',
-    url: 'https://findmysf.com',
+    url: 'https://find-my-sf.vercel.app',
     siteName: 'find my sf',
     images: [
       {
         url: '/preview-image.png',
         width: 1200,
         height: 630,
+        alt: 'find my sf - Discover events happening in San Francisco!',
       },
     ],
     locale: 'en_US',
