@@ -1,4 +1,4 @@
-import { kv } from '@vercel/kv'
+import Redis from 'ioredis'
 import { Event } from '@/types/event'
 import fs from 'fs'
 import path from 'path'
@@ -7,8 +7,29 @@ const EVENTS_KEY = 'events:all'
 const DATA_DIR = path.join(process.cwd(), '.data')
 const EVENTS_FILE = path.join(DATA_DIR, 'events.json')
 
-// Check if we're in production (Vercel environment)
-const isProduction = process.env.KV_REST_API_URL !== undefined
+// Create Redis client (only in production)
+let redis: Redis | null = null
+
+function getRedisClient(): Redis | null {
+  if (!process.env.REDIS_URL) {
+    return null
+  }
+  
+  if (!redis) {
+    redis = new Redis(process.env.REDIS_URL, {
+      maxRetriesPerRequest: 3,
+      retryStrategy(times) {
+        const delay = Math.min(times * 50, 2000)
+        return delay
+      },
+    })
+  }
+  
+  return redis
+}
+
+// Check if we're in production (Redis environment)
+const isProduction = !!process.env.REDIS_URL
 
 // File-based storage functions (for local development)
 function ensureDataDir() {
@@ -31,30 +52,45 @@ function saveEventsToFile(events: Event[]) {
   fs.writeFileSync(EVENTS_FILE, JSON.stringify(events, null, 2), 'utf-8')
 }
 
-// KV-based storage functions (for production)
-async function loadEventsFromKV(): Promise<Event[]> {
+// Redis-based storage functions (for production)
+async function loadEventsFromRedis(): Promise<Event[]> {
   try {
-    const events = await kv.get<Event[]>(EVENTS_KEY)
-    return events || []
+    const client = getRedisClient()
+    if (!client) {
+      console.error('Redis client not available')
+      return []
+    }
+    
+    const data = await client.get(EVENTS_KEY)
+    if (!data) {
+      return []
+    }
+    
+    return JSON.parse(data) as Event[]
   } catch (error) {
-    console.error('Error loading from KV:', error)
+    console.error('Error loading from Redis:', error)
     return []
   }
 }
 
-async function saveEventsToKV(events: Event[]): Promise<void> {
+async function saveEventsToRedis(events: Event[]): Promise<void> {
   try {
-    await kv.set(EVENTS_KEY, events)
+    const client = getRedisClient()
+    if (!client) {
+      throw new Error('Redis client not available')
+    }
+    
+    await client.set(EVENTS_KEY, JSON.stringify(events))
   } catch (error) {
-    console.error('Error saving to KV:', error)
+    console.error('Error saving to Redis:', error)
     throw error
   }
 }
 
-// Public API - automatically uses KV in production, files locally
+// Public API - automatically uses Redis in production, files locally
 export async function loadEvents(): Promise<Event[]> {
   if (isProduction) {
-    return await loadEventsFromKV()
+    return await loadEventsFromRedis()
   } else {
     return loadEventsFromFile()
   }
@@ -62,18 +98,17 @@ export async function loadEvents(): Promise<Event[]> {
 
 export async function saveEvents(events: Event[]): Promise<void> {
   if (isProduction) {
-    await saveEventsToKV(events)
+    await saveEventsToRedis(events)
   } else {
     saveEventsToFile(events)
   }
 }
 
-// Migration helper: Copy local events to KV (run once after setup)
-export async function migrateToKV(): Promise<void> {
+// Migration helper: Copy local events to Redis (run once after setup)
+export async function migrateToRedis(): Promise<void> {
   const localEvents = loadEventsFromFile()
   if (localEvents.length > 0) {
-    await saveEventsToKV(localEvents)
-    console.log(`Migrated ${localEvents.length} events to KV`)
+    await saveEventsToRedis(localEvents)
+    console.log(`Migrated ${localEvents.length} events to Redis`)
   }
 }
-

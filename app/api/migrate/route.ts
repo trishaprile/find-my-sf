@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server'
-import { migrateToKV } from '@/lib/kv-storage'
+import { migrateToRedis } from '@/lib/kv-storage'
 
-// This endpoint migrates your local events to Vercel KV
-// Call it once after setting up KV: GET /api/migrate
+// This endpoint migrates your local events to Redis
+// Call it once after setting up Redis: GET /api/migrate
 export async function GET() {
   try {
-    await migrateToKV()
+    await migrateToRedis()
     return NextResponse.json({ 
       success: true, 
-      message: 'Events migrated to Vercel KV successfully!' 
+      message: 'Events migrated to Redis successfully!' 
     })
   } catch (error) {
     console.error('Migration failed:', error)
